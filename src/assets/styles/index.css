@@ -1,0 +1,18 @@
+.container {
+  margin-block-start: 3rem;
+  display: grid;
+  grid-template: 15% 1fr / 40% 60%;
+  gap: 2rem;
+}
+
+.category .list-group {
+  --bs-list-group-action-hover-bg: #f5d91d;
+  --bs-list-group-action-active-bg: #f5d91d;
+}
+
+.form-select {
+}
+
+.product {
+  grid-area: 2 / 2 / 3 / 3;
+}
