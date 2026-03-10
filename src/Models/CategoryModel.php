@@ -1,7 +1,15 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Models;
 
-use App\Models\DatabaseModel;
+class CategoryModel extends DatabaseModel
+{
+    public function getCategories(): array
+    {
+        $db = $this->getDB();
+        $stmt = $db->prepare("SELECT name FROM categories");
+        $stmt->execute();
 
-class CategoryModel extends DatabaseModel {}
+        return $stmt->fetchAll();
+    }
+}

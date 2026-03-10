@@ -1,3 +1,13 @@
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use App\Models\CategoryModel;
+use App\Constants\SelectEnum;
+
+$categoryModel = new CategoryModel();
+$categories = $categoryModel->getCategories();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,19 +23,25 @@
     <div class="container">
         <aside class="category">
             <div class="list-group">
-                <?php foreach ([1, 2, 3, 4] as $item): ?>
+                <?php foreach ($categories as $category): ?>
                     <a
                         href="#"
                         class="list-group-item list-group-item-action">
-                        A <?= $item ?> link item
+                        <?= $category['name'] ?>
                     </a>
                 <?php endforeach; ?>
             </div>
         </aside>
         <select class="form-select" id="sort">
-            <option selected value="cheaper">Спочатку дешевші</option>
-            <option value="alphabet">По алфавіту</option>
-            <option value="new">Спочатку нові</option>
+            <?php foreach (SelectEnum::cases() as $case): ?>
+                <option value="<?= $case->value ?>">
+                    <?= match ($case) {
+                        SelectEnum::CHEAPER => 'Спочатку дешевші',
+                        SelectEnum::ALPHABET => 'По алфавіту',
+                        SelectEnum::NEW => 'Спочатку нові',
+                    } ?>
+                </option>
+            <?php endforeach; ?>
         </select>
         <div class="product">
             Product
