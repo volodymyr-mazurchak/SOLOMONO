@@ -11,13 +11,26 @@
 
 <body>
     <div class="container">
-        <?php
-        require_once __DIR__ . '/src/Views/CategoryView.php';
-        require_once __DIR__ . '/src/Views/SortView.php';
-        require_once __DIR__ . '/src/Views/ProductView.php';
-        ?>
+        <aside class="category">
+            <div class="list-group">
+                <?php foreach ([1, 2, 3, 4] as $item): ?>
+                    <a
+                        href="#"
+                        class="list-group-item list-group-item-action">
+                        A <?= $item ?> link item
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </aside>
+        <select class="form-select" id="sort">
+            <option selected value="cheaper">Спочатку дешевші</option>
+            <option value="alphabet">По алфавіту</option>
+            <option value="new">Спочатку нові</option>
+        </select>
+        <div class="product">
+            Product
+        </div>
     </div>
-
 </body>
 
 </html>

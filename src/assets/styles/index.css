@@ -1,7 +1,7 @@
 .container {
   margin-block-start: 3rem;
   display: grid;
-  grid-template: 15% 1fr / 40% 60%;
+  grid-template: 20% 1fr / 40% 60%;
   gap: 2rem;
 }
 
