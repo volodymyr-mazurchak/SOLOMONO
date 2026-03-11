@@ -2,11 +2,14 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Models\CategoryModel;
+use App\Models\{CategoryModel, ProductModel};
 use App\Constants\SelectEnum;
 
 $categoryModel = new CategoryModel();
+$productModel = new ProductModel();
+
 $categories = $categoryModel->getCategories();
+$products = $productModel->getProducts();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +47,19 @@ $categories = $categoryModel->getCategories();
             <?php endforeach; ?>
         </select>
         <div class="product">
-            Product
+            <?php foreach ($products as $product): ?>
+                <div class="card" style="width: 18rem;">
+                    <img src="/src/assets/img/<?= $product['photo'] ?>" class="card-img-top" alt="Product photo">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $product['name'] ?></h5>
+                        <div class="info">
+                            <strong>$<?= $product['price'] ?></strong>
+                            <a href="#" class="btn btn-primary">Купить</a>
+                        </div>
+                        <p class="date">Дата додавання товару: <?= $product['date'] ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </body>
