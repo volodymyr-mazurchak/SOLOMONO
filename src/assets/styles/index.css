@@ -1,12 +1,16 @@
+:root {
+  --gap: 1rem;
+}
+
 body {
   min-width: 350px;
 }
 
 .container {
-  margin-block-start: 3rem;
+  margin-block-start: calc(3 * var(--gap));
   display: grid;
   grid-template: 45px 1fr / 40% 60%;
-  gap: 2rem;
+  gap: calc(2 * var(--gap));
 }
 
 .category .list-group {
@@ -14,9 +18,47 @@ body {
   --bs-list-group-action-active-bg: #f5d91d;
 }
 
-.form-select {
+.products {
+  grid-area: 2 / 2 / 3 / 3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+  overflow-y: auto;
+  height: 500px;
 }
 
-.product {
-  grid-area: 2 / 2 / 3 / 3;
+.card img {
+  height: 250px;
+  width: 100%;
+  padding-block-start: var(--gap);
+  object-fit: contain;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.card-title {
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.date {
+  color: #cfc7be;
+  font-size: 1rem;
 }

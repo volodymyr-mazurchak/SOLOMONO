@@ -46,17 +46,17 @@ $products = $productModel->getProducts();
                 </option>
             <?php endforeach; ?>
         </select>
-        <div class="product">
+        <div class="products">
             <?php foreach ($products as $product): ?>
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <img src="/src/assets/img/<?= $product['photo'] ?>" class="card-img-top" alt="Product photo">
                     <div class="card-body">
                         <h5 class="card-title"><?= $product['name'] ?></h5>
                         <div class="info">
-                            <strong>$<?= $product['price'] ?></strong>
+                            <span class="price">$<?= $product['price'] ?></span>
                             <a href="#" class="btn btn-primary">Купить</a>
                         </div>
-                        <p class="date">Дата додавання товару: <?= $product['date'] ?></p>
+                        <span class="date">Опубліковано: <?= $product['date'] ?></span>
                     </div>
                 </div>
             <?php endforeach; ?>
