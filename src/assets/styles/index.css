@@ -1,5 +1,6 @@
 :root {
   --gap: 1rem;
+  --category-color: #f5d91d;
 }
 
 body {
@@ -15,8 +16,11 @@ body {
 }
 
 .category .list-group {
-  --bs-list-group-action-hover-bg: #f5d91d;
-  --bs-list-group-action-active-bg: #f5d91d;
+  --bs-list-group-action-hover-bg: var(--category-color);
+  --bs-list-group-action-active-bg: var(--category-color);
+  --bs-list-group-active-bg: var(--category-color);
+  --bs-list-group-active-color: var(--bs-list-group-action-color);
+  --bs-list-group-active-border-color: var(--bs-list-group-border-color);
 }
 
 .products {

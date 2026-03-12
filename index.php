@@ -27,11 +27,11 @@ $products = $productModel->getProducts();
         <aside class="category">
             <div class="list-group">
                 <?php foreach ($categories as $category): ?>
-                    <a
-                        href="#"
+                    <button
+                        type="button"
                         class="list-group-item list-group-item-action">
                         <?= $category['name'] ?> (<?= $category['totalProducts'] ?>)
-                    </a>
+                    </button>
                 <?php endforeach; ?>
             </div>
         </aside>
@@ -82,6 +82,7 @@ $products = $productModel->getProducts();
     </div>
     <script src="/src/assets/scripts/bootstrap.bundle.min.js"></script>
     <script src="/src/assets/scripts/modal.js"></script>
+    <script src="/src/assets/scripts/category.js"></script>
 </body>
 
 </html>
