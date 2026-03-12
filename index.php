@@ -30,7 +30,7 @@ $products = $productModel->getProducts();
                     <a
                         href="#"
                         class="list-group-item list-group-item-action">
-                        <?= $category['name'] ?>
+                        <?= $category['name'] ?> (<?= $category['totalProducts'] ?>)
                     </a>
                 <?php endforeach; ?>
             </div>
