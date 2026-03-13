@@ -12,7 +12,7 @@ $categories = $categoryModel->getCategories();
 $products = $productModel->getProducts();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +29,8 @@ $products = $productModel->getProducts();
                 <?php foreach ($categories as $category): ?>
                     <button
                         type="button"
-                        class="list-group-item list-group-item-action">
+                        class="list-group-item list-group-item-action"
+                        data-category-id="<?= $category['id'] ?>">
                         <?= $category['name'] ?> (<?= $category['totalProducts'] ?>)
                     </button>
                 <?php endforeach; ?>

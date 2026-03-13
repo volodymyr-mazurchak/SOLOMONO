@@ -27,6 +27,8 @@ body {
   grid-area: 2 / 2 / 3 / 3;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  align-content: start;
   gap: var(--gap);
   overflow-y: auto;
   height: 80vh;
