@@ -2,9 +2,12 @@ const buttons = document.querySelectorAll(
   ".list-group-item.list-group-item-action",
 );
 
+const select = document.getElementById("sort");
+
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const categoryId = params.get("categoryId");
+  const sort = params.get("sort") ?? "cheaper";
 
   buttons.forEach((button) => {
     if (button.dataset.categoryId === categoryId) {
@@ -12,9 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  select.value = sort;
+
   if (categoryId) {
     loadProducts(categoryId);
   }
+});
+
+select.addEventListener("change", () => {
+  const value = select.value;
+
+  createUrl("sort", value);
 });
 
 buttons.forEach((button) => {
@@ -23,16 +34,19 @@ buttons.forEach((button) => {
     button.classList.add("active");
 
     const categoryId = button.dataset.categoryId;
-    const url = new URL(window.location);
-    url.searchParams.set("categoryId", categoryId);
-    window.history.pushState({}, "", url);
-
+    createUrl("categoryId", categoryId);
     loadProducts(categoryId);
   });
 });
 
+function createUrl(key, value) {
+  const url = new URL(window.location);
+  url.searchParams.set(key, value);
+  window.history.pushState({}, "", url);
+}
+
 function loadProducts(categoryId) {
-  fetch(`/src/Controllers/CategoryController.php?categoryId=${categoryId}`)
+  fetch(`/src/Controllers/ProductsController.php?categoryId=${categoryId}`)
     .then((res) => res.json())
     .then((products) => {
       const productsBlock = document.querySelector(".products");

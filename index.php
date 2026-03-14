@@ -83,7 +83,7 @@ $products = $productModel->getProducts();
     </div>
     <script src="/src/assets/scripts/bootstrap.bundle.min.js"></script>
     <script src="/src/assets/scripts/modal.js"></script>
-    <script src="/src/assets/scripts/category.js"></script>
+    <script src="/src/assets/scripts/sort-and-filter.js"></script>
 </body>
 
 </html>
