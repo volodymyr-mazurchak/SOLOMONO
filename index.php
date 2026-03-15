@@ -43,6 +43,7 @@ $products = $productModel->getProducts();
                         SelectEnum::CHEAPER => 'Спочатку дешевші',
                         SelectEnum::ALPHABET => 'По алфавіту',
                         SelectEnum::NEW => 'Спочатку нові',
+                        default => 'Спочатку дешевші'
                     } ?>
                 </option>
             <?php endforeach; ?>
