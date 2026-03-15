@@ -5,7 +5,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 use App\Models\ProductModel;
 use App\Constants\SelectEnum;
 
-$categoryId = $_GET['categoryId'] ?? "";
+$categoryId = (int) $_GET['categoryId'] ?? null;
 $sort = $_GET['sort'] ?? SelectEnum::CHEAPER->value;
 
 $orderBy = match ($sort) {
@@ -15,11 +15,6 @@ $orderBy = match ($sort) {
     default => 'price ASC'
 };
 
-$sql = "";
-
-if ($categoryId) $sql .= " WHERE categoryId = {$categoryId}";
-$sql .= " ORDER BY $orderBy";
-
-$products = new ProductModel()->getProducts($sql);
+$products = new ProductModel()->getProducts($categoryId, $orderBy);
 
 echo json_encode($products);
