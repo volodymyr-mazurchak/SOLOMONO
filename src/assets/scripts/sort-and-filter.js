@@ -5,9 +5,7 @@ const select = document.getElementById("sort");
 const defaultSort = "cheaper";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const categoryId = params.get("categoryId");
-  const sort = params.get("sort") ?? defaultSort;
+  const { categoryId, sort } = getParams();
 
   buttons.forEach((button) => {
     if (button.dataset.categoryId === categoryId) {
@@ -17,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   select.value = sort;
 
-  const queryParams = { categoryId, sort };
-
-  loadProducts(queryParams);
+  loadProducts({ categoryId, sort });
 });
 
 select.addEventListener("change", () => {
@@ -40,6 +36,14 @@ buttons.forEach((button) => {
   });
 });
 
+function getParams() {
+  const params = new URLSearchParams(window.location.search);
+  const categoryId = params.get("categoryId") ?? "";
+  const sort = params.get("sort") ?? defaultSort;
+
+  return { categoryId, sort };
+}
+
 function createUrl(key, value) {
   const url = new URL(window.location);
   url.searchParams.set(key, value);
@@ -47,13 +51,13 @@ function createUrl(key, value) {
 }
 
 function loadProducts(queryParams) {
-  const categoryParam = queryParams.categoryId
-    ? `&categoryId=${queryParams.categoryId}`
-    : "";
-  const sortParam = queryParams.sort ? `${queryParams.sort}` : defaultSort;
+  const { categoryId, sort } = getParams();
+
+  const categoryParam = queryParams.categoryId ?? categoryId;
+  const sortParam = queryParams.sort ?? sort;
 
   fetch(
-    `/src/Controllers/ProductsController.php?sort=${sortParam}${categoryParam}`,
+    `/src/Controllers/ProductsController.php?sort=${sortParam}&categoryId=${categoryParam}`,
   )
     .then((res) => res.json())
     .then((products) => {

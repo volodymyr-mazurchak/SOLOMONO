@@ -7,6 +7,7 @@ use App\Constants\SelectEnum;
 
 $categoryId = $_GET['categoryId'] ?? "";
 $sort = $_GET['sort'] ?? SelectEnum::CHEAPER->value;
+
 $orderBy = match ($sort) {
     SelectEnum::CHEAPER->value => 'price ASC',
     SelectEnum::ALPHABET->value => 'name ASC',
